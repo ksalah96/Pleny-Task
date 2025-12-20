@@ -1,28 +1,51 @@
-# Pleny-Task
-- Link to your n8n workflow:
-https://salah1234.app.n8n.cloud/workflow/qzmqfqVtkKMPqYn2
-- Link to your demo video:
-- Brief explanation of your approach:
-I approached this workflow by creating a robust data pipeline that handles the complete ETL process with proper error handling. The workflow fetches user data from an API, transforms     it using custom JavaScript to filter specific email domains and restructure the data format, then applies multiple quality controls including limiting records, filtering unwanted         domains, and removing duplicates. The key decision point uses a conditional branch to classify users as VIP or Regular based on blood type O-, routing them to separate Google Sheets      operations. Error handling is built in at the critical fetch stage, sending email notifications if the API call fails, ensuring reliability and monitoring capabilities for the            automated process.
--Any challenges you faced and how you solved them:
-I didn't face any challenge
-- Instructions to test/run your workflow:
-No something specific just run the workflow
+# AI Agent Engineer Technical Assessment
 
-- Description of your bonus feature and why you chose it:
-### Retry Logic with Failure Handling: 
-Implemented automatic retry mechanism on the Fetch Data node with a 3-second wait between attempts. This ensures transient network issues or temporary API unavailability don't cause workflow failures, improving overall reliability.
+##  Project Links
+- **n8n Workflow:** https://salah1234.app.n8n.cloud/workflow/qzmqfqVtkKMPqYn2
+- **Demo Video:** [Link to be added]
 
-### Error Notification System: 
-Configured the Fetch Data node to trigger a Gmail notification on errors, sending alerts to my email when the API call fails. This proactive monitoring ensures I'm immediately aware of critical issues requiring attention.
+---
 
-### Geographic Data Enrichment: 
-Enhanced the dataset by extracting and preserving latitude/longitude coordinates from the address data during transformation. This geographic enrichment enables potential location-based analytics and mapping capabilities.
+##  Approach Overview
 
-### Conditional Routing Logic: 
-Implemented an If node to intelligently route users based on blood type (O- = VIP, others = Regular). This business logic automation ensures proper categorization and differentiated handling of records in the Google Sheets destination.
+This workflow implements a production-ready ETL (Extract, Transform, Load) pipeline with comprehensive error handling and data quality controls. The system fetches user data from the DummyJSON API, applies custom JavaScript transformations to filter and restructure records, then routes data through multiple validation layers including record limiting, domain filtering, and duplicate removal. A conditional branching system classifies users as VIP or Regular based on blood type (O-), directing each category to the appropriate Google Sheets destination. Built-in error handling at the API fetch stage triggers email notifications for any failures, ensuring reliable monitoring and operational visibility.
 
-### Data Deduplication: 
-Added a Remove Duplicates node that checks email addresses to prevent duplicate records from being processed. This maintains data integrity and prevents redundant entries in the final dataset.
+---
 
-### Rate Limiting Protection: Applied a Limit node capping processing to 15 records per execution. This throttling mechanism prevents overwhelming downstream systems and manages API quotas effectively during scheduled runs.
+##  Challenges & Solutions
+
+No significant challenges were encountered during development. The workflow architecture was designed with clarity and maintainability in mind, leveraging n8n's native nodes and straightforward JavaScript transformations.
+
+---
+
+##  Testing Instructions
+
+**Simple Execution:**
+1. Open the workflow in your n8n instance
+2. Click the "Execute Workflow" button
+3. Monitor the execution flow as data moves through each node
+4. Verify results in the connected Google Sheet
+
+---
+
+## Bonus Features Implementation
+
+###  Retry Logic with Failure Handling
+Automatic retry mechanism configured on the Fetch Data node with a 3-second interval between attempts. This resilience feature handles transient network issues and temporary API unavailability, significantly improving workflow reliability.
+
+###  Error Notification System
+Email alerting integrated directly into the Fetch Data node's error output. When API failures occur, the system automatically sends detailed notifications to k.salah0610@gmail.com, enabling immediate issue awareness and rapid response.
+
+###  Geographic Data Enrichment
+Latitude and longitude coordinates extracted and preserved during data transformation. This geographic enrichment layer adds spatial intelligence to the dataset, enabling location-based analytics, mapping visualizations, and proximity calculations.
+
+###  Conditional Routing Logic
+Smart classification system using the If node to evaluate blood type criteria. Users with O- blood type are automatically flagged as VIP and routed to a dedicated processing path, while all others follow the Regular customer flow—ensuring differentiated service levels.
+
+###  Data Deduplication
+Email-based duplicate detection prevents redundant record processing. The Remove Duplicates node maintains data integrity by ensuring each unique email address appears only once, protecting against duplicate entries in the destination Google Sheet.
+
+###  Rate Limiting Protection
+Processing throttled to 15 records per execution cycle via the Limit node. This safeguard prevents system overload, manages API quota consumption, and ensures controlled data throughput during scheduled automation runs.
+
+---

@@ -2,7 +2,7 @@
 
 ##  Project Links
 - **n8n Workflow:** https://salah1234.app.n8n.cloud/workflow/qzmqfqVtkKMPqYn2
-- **Demo Video:** [Link to be added]
+- **Demo Video:** https://drive.google.com/file/d/1wU4CsJNQsYna8v4n9Jv16wfxfjhTdzvF/view?usp=drive_link
 
 ---
 
